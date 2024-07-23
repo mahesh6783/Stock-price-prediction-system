@@ -1,0 +1,52 @@
+{% extends 'user_navbar.html' %}
+
+{% load static %}
+{% block content %}
+     
+
+    <h3 style="text-align: center;">SELECT YOUR MODEL FOR PREDICTION</h3>
+
+    <div style="width: 70%; height: 6px; margin-left: auto; margin-right: 0px; margin-top: 3%; background-color: white; border-radius: 90px;">
+
+    </div>
+
+    <div class="h_container">
+        <!-- Left div -->
+        <div class="h_left-div">
+            <h2 style="color: blue;">LINEAR REGRESSION</h2>
+            <p>
+                Linear regression is a foundational machine learning algorithm used in stock price prediction. By analyzing historical stock data, such as past prices and trading volumes, linear regression establishes a relationship to forecast future stock prices. Despite its simplicity, linear regression provides valuable insights into potential price trends</p>
+        </div>
+    
+        <!-- Right div -->
+        <div class="h_right-div">
+            <a href="/search/"><img class="h_img"  style=" border-radius: 20px; box-shadow: 0 0 20px blue ;" src="{% static 'image/ML.png' %}" alt="Example GIF"></a>
+        </div>
+    </div>
+    <div style="width: 70%; height: 6px; margin-top: 3%; background-color: white; border-radius: 90px;">
+
+    </div>
+    <div class="h_container">
+        <!-- Left div -->
+        <div class="h_left-div">
+            <a href="/user_payment/"><img class="h_img" style=" border-radius: 20px; box-shadow: 0 0 20px red;"  src="{% static 'image/DL.png' %}" alt="Example GIF">  </a>
+               
+        </div>
+    
+        <!-- Right div -->
+        <div class="h_right-div">
+            <h2 style="color: RED;">LONG SHORT-TERM MEMORY (LSTM)</h2>
+             <p>Long Short-Term Memory (LSTM) is a powerful deep learning algorithm widely employed in stock price prediction. Unlike traditional models, LSTM can capture intricate patterns and dependencies in sequential data, making it well-suited for time series forecasting. By leveraging its ability to retain and selectively forget information over long periods, LSTM models excel in capturing both short-term fluctuations and long-term trends in stock prices. As a result, LSTM has become a cornerstone in financial prediction tasks, offering superior accuracy and performance compared to traditional machine learning methods.</p>
+            
+
+        </div>
+    </div>
+
+
+
+
+
+
+    
+    
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'admin_navbar.html' %}
+
+<!-- dashboard.html -->
+ 
+
+{% block content %}
+    <h1>Dashboard</h1>
+
+    <canvas id="usageChart"></canvas>
+    <img src="data:image/png;base64,{{ graphic }}" alt="Line Plot with Custom Range">
+
+    
+{% endblock %}
+
+

@@ -1,0 +1,44 @@
+{% extends 'user_navbar.html' %}
+{% load static %}
+{% block content %}
+ 
+<form>
+    <table class="c_u_table">
+        <tr>
+            <td rowspan="3" class="u_c_td" >
+                <img class="c_u_img" src="{% static 'image/cu.png' %}" class="img-fluid">
+            </td>
+            <td>
+                <h2>CONTACT US </h2>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <textarea class="c_u_textarea"></textarea>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                 <input class="c_u_sunmit" type="submit" value="SEND">
+            </td>
+        </tr>
+
+    </table>
+</form>
+<table class="c_u_table" style="height:60px;">
+    <tr>
+        <td>
+            phone:7994545240
+        </td>
+        <td>
+            email:maheshharikrishnan11@gmail.com
+        </td>
+        <td>
+            location:kottayam
+        </td>
+    </tr>
+</table>
+
+ 
+             
+{% endblock %}

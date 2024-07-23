@@ -1,0 +1,70 @@
+{% extends 'admin_navbar.html' %}
+{% load static %}
+{% block content %}
+
+<div class="path pt-4 px-4">
+    <h6><a href="/admin_page/">Dashbord</a> &nbsp;>&nbsp; <a href="/a_user_feedback/">feedbacks</a> &nbsp;>&nbsp;Reply</h6>
+</div>
+
+<div class="container-fluid pt-4 px-4" >
+    <div class="row g-4">        
+        <div class="col-sm-8 col-xl-12">
+            <div class="bg-secondary   rounded p-4">
+                <div class="replys">
+                    {% for d in data2 %}
+                    <div class="inline-block"><img class="rounded-circle flex-shrink-0" src="{% static 'u_image/' %}{{ d.1 }}" alt="" style="width: 40px; height: 40px;"></div>
+                    <div class="inline-block"><h6 style="margin-left: 0;">{{d.2}}</h6></div>
+                    <div class=" "><h6 style="margin-left: 50px;">{{d.0}}</h6></div>
+                    {% endfor %} 
+                </div>
+                <div class="col-md-10">
+                    <div class="scrollable-div" style="height: 400px;">
+                        {% for d in data1 %}                                     
+                        <div class="d-flex align-items-center border-bottom py-3" style="padding: 20px;">
+                            <img class="rounded-circle flex-shrink-0" src="{% static 'u_image/' %}{{ d.7 }}" alt="" style="width: 40px; height: 40px;">
+                            <div class="w-100 ms-3">
+                                <div class="d-flex w-100 justify-content-between">
+                                    {% if d.8 %}
+                                        <h6 class="mb-0">{{d.2}}&nbsp;<img class="rounded-circle flex-shrink-0" src="{% static 'u_image/' %}{{ d.8 }}" alt="" style="width: 16px; height: 16px;"></h6>
+                                    {% else %}
+                                        <h6 class="mb-0">{{d.2}}</h6>
+                                    {% endif %}
+                                    <small>{{d.4}} : {{d.5}} </small>
+                                </div>
+                                <span>{{d.3}}</span>                                      
+                                 
+                            </div>                                        
+                        </div>
+                        {% endfor %}
+                  </div>  
+                </div>
+            </div>
+        </div>                     
+    </div>
+</div>
+<div class="container-fluid pt-1 px-4">
+<div class="row g-4">
+<div class="col-sm-4 col-xl-12">
+    <div class="bg-secondary text-center rounded p-4">
+        
+        <div class="col-md-2">
+            <form action="../a_fd_reply_collect/" method="POST" class="fd_form">
+                {% csrf_token %}
+                <table class="feedback">
+                     
+                    <tr>
+                        <input type="hidden" name="fd_id" value="{{id_value}}">
+                        <td><textarea class="fb" name="fd"></textarea></td><td><input type="submit" value="SUBMIT"></td>
+                    </tr>
+                    
+                </table>
+            </form>
+           
+        </div>
+    </div>
+</div>
+</div>
+</div>
+
+
+{% endblock %}

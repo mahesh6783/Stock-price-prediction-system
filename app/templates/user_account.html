@@ -1,0 +1,70 @@
+{% extends 'user_navbar.html' %}
+{% load static %}
+{% block content %}
+<div class="container-fluid pt-4 px-4">
+    <div class="row g-4">
+        <div class="col-sm-12 col-xl-6">
+            <div class="bg-secondary text-center rounded p-4">
+                {% for d in data %}
+                <h5>{{d.1}}</h5>
+                <div class="uer_table">            
+    
+                    <table class="table">
+                        <tr>
+                            <td colspan="2"><img class="rounded-circle flex-shrink-0" src="{% static 'u_image/' %}{{ d.7 }}" alt="" style="width: 160px; height: 160px;"></td>
+                        </tr>
+                         
+                         
+                        <tr>
+                            <td>PHONE</td><td style="color: white;">{{d.2}}</td>
+                        </tr>
+                        <tr>
+                            <td>EMAIL</td><td style="color: white;">{{d.3}}</td>
+                        </tr>
+                        <tr>
+                            <td>GENDER</td><td style="color: white;">{{d.4}}</td>
+                        </tr>
+                           
+                         
+                        <tr><td><div class="u_link"><a href="/user_user_edit?id={{d.0}}">edit</a></div></td></tr>
+                        <tr><td><div class="u_link"><a href="/user_change_pass?id={{d.0}}">change password</a></div></td></tr>
+                         
+                    </table>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col-sm-12 col-xl-6">
+            <div class="bg-secondary text-center rounded p-4">
+                <div class="d-flex align-items-center justify-content-between mb-4">
+                    <h6 class="mb-0">pyment history</h6>
+                </div>
+                <table class="table table-bordered">
+                    <tr>
+                        <th>Amount</th>
+                        <th>Status</th>
+                        <th>Payment date</th>
+                        <th>Expiration date</th>
+                    </tr>
+                     
+                    {% for d1 in data1 %}
+                    <tr>
+                        
+                        <td>{{d1.0}}</td>
+                        <td>{{d1.1}}</td>  
+                        <td>{{d1.2}}</td>
+                        <td>{{d1.3}}</td>
+                        <td><a href="/generate_pdf?id={{d1.0}}">download</a></td>
+                                   
+                    
+                    </tr>
+                    {% endfor %}
+                </table>
+                
+            </div>
+        </div>
+        
+    </div>
+</div>
+ 
+{% endblock %}

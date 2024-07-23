@@ -1,0 +1,113 @@
+{% extends 'user_navbar.html' %}
+{% block content %}
+            <!-- Navbar End -->
+
+
+            <!-- Start of Main Content -->
+
+            <div class="container-fluid pt-4 px-4">
+                <div class="row g-4">
+                    <div class="col-sm-12 col-xl-10">
+                        <div class="bg-secondary text-center rounded p-4">
+                            <div class="d-flex align-items-center justify-content-between mb-4">
+                                <h6 class="mb-0">Information</h6>
+                                <a href="https://finance.yahoo.com/quote/{{ticker_value}}?p={{ticker_value}}">Show More</a>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table text-start align-middle table-bordered table-hover mb-0">
+                                    <tbody>
+                                        <tr>
+                                            <td>Symbol</td>
+                                            <td>{{Symbol}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>{{Name}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Last Sale</td>
+                                            <td>{{Last_Sale}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Net Change</td>
+                                            <td>{{Net_Change}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Percent Change</td>
+                                            <td>{{Percent_Change}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Market Capital</td>
+                                            <td>{{Market_Cap}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Country</td>
+                                            <td>{{Country}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>IPO Year</td>
+                                            <td>{{IPO_Year}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Volume</td>
+                                            <td>{{Volume}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Sector</td>
+                                            <td>{{Sector}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Industry</td>
+                                            <td>{{Industry}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>            
+            <div class="container-fluid pt-4 px-4">
+                <div class="row g-4">
+                    <div class="col-sm-12 col-xl-6">
+                        <div class="bg-secondary text-center rounded p-4">
+                            <div class="d-flex align-items-center justify-content-between mb-4">
+                                <h6 class="mb-0">Recent Stock price of {{ticker_value}}</h6>
+                                <a href="https://finance.yahoo.com/quote/{{ticker_value}}/chart?p={{ticker_value}}#">
+                                    Show More
+                                </a>
+                            </div>
+                            {% block Left_Plot %}
+
+                                {% autoescape off %}
+                                    {{ plot_div }}
+                                {% endautoescape %}
+
+                            {% endblock Left_Plot %}
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-xl-6">
+                        <div class="bg-secondary text-center rounded p-4">
+                            <div class="d-flex align-items-center justify-content-between mb-4">
+                                <h6 class="mb-0">Predicted Stock price of {{ticker_value}} for next {{number_of_days}} days</h6>
+                            </div>
+                            {% block Right_Plot %}
+
+                                {% autoescape off %}
+                                    {{ plot_div_pred }}
+                                {% endautoescape %}
+
+                            {% endblock Right_Plot %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Content End -->
+
+
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+    </div>
+   
+{% endblock  %}

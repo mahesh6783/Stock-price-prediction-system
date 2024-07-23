@@ -1,0 +1,64 @@
+{% extends 'user_navbar.html' %}
+
+{% load static %}
+{% block content %}
+<h3 style="text-align: center;">{{msg}}</h3> 
+<div style="margin-left:30%;">
+<div class="container-fluid pt-4 px-4" >
+    <div class="row g-4">
+        
+        <div class="col-sm-12 col-xl-6">
+            <div class="bg-secondary text-center rounded p-4">
+                <div class="d-flex align-items-center justify-content-between mb-4">
+                    <h6 class="mb-0">Payment </h6>
+                </div>
+                <form action="/user_payment_collect/" method="POST">
+                    {% csrf_token %}
+                <table class="p_table" cellpadding="8">
+                    <tr>
+                        <td for="days">Days</td><td><select id="days" class="p_select" name="days">
+                                                <option value="28">28</option>
+                                                <option value="56">56</option>
+                                                <option value="112">112</option>
+                        </select></td>
+                    </tr>    
+                        <tr>
+                            <td>Amount</td><td><input type="text" id="amount" name="amount" readonly></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><input class="p_button" type="submit" value="PAY"></td>
+                        </tr>
+                    
+                </table>
+            </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<script>
+    // Get references to the input fields
+    const daysInput = document.getElementById('days');
+    const amountInput = document.getElementById('amount');
+    
+    // Function to calculate amount based on number of days
+    function calculateAmount() {
+        const days = parseInt(daysInput.value);
+        const ratePerDay = 10; // Example rate per day
+    
+        // Calculate amount
+        const amount = days * ratePerDay;
+    
+        // Update amount input field
+        amountInput.value = amount.toFixed(2); // Format amount to 2 decimal places
+    }
+    
+    // Event listener to calculate amount when the number of days changes
+    daysInput.addEventListener('input', calculateAmount);
+    
+    // Initial calculation when the page loads
+    calculateAmount();
+    </script>
+ 
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends 'admin_navbar.html' %}
+{% load static %}
+{% block content %}
+     
+{% for d in data %}
+
+<div class="path pt-4 px-4">
+    <h6><a href="/admin_page/">Dashbord</a> &nbsp;>&nbsp; <a href="/a_users/">Users</a> &nbsp;>&nbsp; <a href="/a_user_account_info?id={{d.0}}/">{{d.1}}</a> &nbsp;>&nbsp; Edit </h6>
+</div>
+
+<div class="container-fluid pt-4 px-4">
+    <div class="col-sm-12 col-xl-6">
+        <div class="bg-secondary rounded h-100 p-4">
+            <h6 class="mb-4">Table Without Border</h6>
+            <form name="register" method="POST" action="../user_edit_action/" style="width:95%;">
+                {% csrf_token %}    
+                <table class="table table-borderless">
+                    <tr>
+                        <td colspan="2"><img src=" "></td>
+                    </tr>
+                    <tr hidden>
+                        <td>ID</td><td><input class="form-control mx-sm-3" type="text" id="id" name="id" value="{{d.0}}"></td>
+                    </tr>
+                    <tr>
+                        <td>NAME</td><td><input class="form-control mx-sm-3" type="text" id="uname" name="uname" value="{{d.1}}"></td>
+                    </tr>
+                    <tr>
+                        <td>PHONE</td><td><input class="form-control mx-sm-3" type="text" name="phone" value="{{d.2}}" required></td>
+                    </tr>
+                    <tr>
+                        <td>EMAIL</td><td><input class="form-control mx-sm-3" type="email" name="email" value="{{d.3}}" required></td>
+                    </tr>
+                    <tr>
+                        <td>GENDER</td><td><input class="form-control mx-sm-3" type="text" name="gender" value="{{d.4}}" required></td>
+                    </tr>
+                    <tr hidden>
+                        <td>PASSWORD</td><td><input class="form-control mx-sm-3" type="text" name="pass" value="{{d.5}}" required></td>
+                    </tr>  
+                    <tr>
+                        <td colspan="2"><input class="btn btn-danger" type="submit" id="submit" value="UPDATE" name="submit"></td>
+                    </tr>    
+                </table>
+                {% endfor %}
+            </form>
+        </div>
+    </div>
+</div>
+ 
+            
+{% endblock %}

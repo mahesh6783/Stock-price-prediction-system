@@ -1,0 +1,89 @@
+{% extends 'user_navbar.html' %}
+{% block content %}
+ <!-- Sales Chart Start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="row g-4">
+                    <div class="col-sm-12 col-xl-12">
+                        <div class="bg-secondary text-center rounded p-4">
+                            <div class="d-flex align-items-center justify-content-between mb-4">
+                                <h6 class="mb-0">Active Stocks</h6>
+                                <a href="">Show All</a>
+                            </div>
+                            {% block Left_Plot %}
+
+                                {% autoescape off %}
+                                    {{ plot_div_left }}
+                                {% endautoescape %}
+
+                            {% endblock Left_Plot %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Sales Chart End -->
+
+
+            <!-- Recent Sales Start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="bg-secondary text-center rounded p-4">
+                    <div class="d-flex align-items-center justify-content-between mb-4">
+                        <h6 class="mb-0">Recent Stocks</h6>
+                        <a href="https://finance.yahoo.com/trending-tickers">Show All</a>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table text-start align-middle table-bordered table-hover mb-0">
+                            <thead>
+                                <tr class="text-white">
+                                    <th scope="col">Ticker</th>
+                                    <th scope="col">Open</th>
+                                    <th scope="col">High</th>
+                                    <th scope="col">Low</th>
+                                    <th scope="col">Close</th>
+                                    <th scope="col">Adj. Close</th>
+                                    <th scope="col">Volume</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% if recent_stocks %}
+                                {% for i in recent_stocks %}
+                                <tr>
+                                    <td>{{i.Ticker}}</td>
+                                    <td>{{i.Open}}</td>
+                                    <td>{{i.High}}</td>
+                                    <td>{{i.Low}}</td>
+                                    <td>{{i.Close}}</td>
+                                    <td>{{i.Adj_Close}}</td>
+                                    <td>{{i.Volume}}</td>
+                                </tr>
+                                {% endfor %}
+                                {% endif %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- Recent Sales End -->
+
+
+            <!-- Footer Start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="bg-secondary rounded-top p-4">
+                    <div class="row">
+                        <div class="col-12 col-sm-6 text-center text-sm-start">
+                            &copy; <a href="#">MAHESH H</a>, All Right Reserved. 
+                        </div>
+                        <div class="col-12 col-sm-6 text-center text-sm-end">
+                            Designed By <a href="">MAHESH H</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Footer End -->
+        </div>
+        <!-- Content End -->
+
+
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+    </div>
+{% endblock %}

@@ -1,0 +1,146 @@
+ 
+{% extends 'admin_navbar.html' %}
+{% load static %}
+{% block content %}
+
+<div class="path pt-4 px-4">
+    <h6><a href="/admin_page/">Dashbord</a> &nbsp;>&nbsp; <a href="/a_users/">Users</a> &nbsp;>&nbsp; {{name}} </h6>
+</div>        
+{% if status == "p" %}
+<div class="container-fluid pt-4 px-4">
+    <div class="row g-4">
+        <div class="col-sm-12 col-xl-6">
+            <div class="bg-secondary text-center rounded p-4">
+                <div class="d-flex align-items-center justify-content-between mb-4">
+                    <h6 class="mb-0">User</h6>               
+                </div>
+                {% for d in data %}                
+                <div class="uer_table">                
+                    <table class="table">
+                        <tr>
+                            <td colspan="3"><img class="rounded-circle flex-shrink-0" src="{% static 'u_image/' %}{{ d.7 }}" alt="" style="width: 134px; height: 134px;"></td>
+                        </tr>
+                        <tr><td colspan="3"><h5>{{d.1}}</h5></td></tr>
+                        <tr>
+                            <td>ID</td><td colspan="2" style="color: white;">{{d.0}}</td> 
+                        </tr>                         
+                        <tr>
+                            <td>PHONE</td><td colspan="2"  style="color: white;">{{d.2}}</td>
+                        </tr>
+                        <tr>
+                            <td>EMAIL</td><td colspan="2"  style="color: white;">{{d.3}}</td>
+                        </tr>
+                        <tr>
+                            <td>GENDER</td><td colspan="2"  style="color: white;">{{d.4}}</td>
+                        </tr>                                                 
+                    </table>
+                </div>
+                
+            </div>
+        </div>
+        <div class="col-sm-12 col-xl-6">
+            <div class="bg-secondary text-center rounded p-4">
+                <div class="d-flex align-items-center justify-content-between mb-4">
+                    <h6 class="mb-0">Action</h6>             
+                </div>
+                <div class="mb-3">
+                    <a class="btn btn-lg btn-primary m-2" href="/a_request_user_approve?id={{d.0}}">Accept</a>
+                </div>
+                <div class="mb-3">
+                    <a class="btn btn-lg btn-primary m-2" href="/user_delete?id={{d.0}}">Delete</a>
+                </div> 
+                {% endfor %}                         
+            </div>
+        </div>
+    </div>
+</div>     
+{% else %}
+<div class="container-fluid pt-4 px-4">
+    <div class="row g-4">
+        <div class="col-sm-12 col-xl-6">
+            <div class="bg-secondary text-center rounded p-4">
+                <div class="d-flex align-items-center justify-content-between mb-4">
+                    <h6 class="mb-0">User</h6>               
+                </div>
+                {% for d in data %}                
+                <div class="uer_table">                
+                    <table class="table">
+                        <tr>
+                            <td colspan="3"><img class="rounded-circle flex-shrink-0" src="{% static 'u_image/' %}{{ d.7 }}" alt="" style="width: 134px; height: 134px;"></td>
+                        </tr>
+                        <tr><td colspan="3"><h5>{{d.1}}</h5></td></tr>
+                        <tr>
+                            <td>ID</td><td colspan="2" style="color: white;">{{d.0}}</td> 
+                        </tr>                         
+                        <tr>
+                            <td>PHONE</td><td colspan="2"  style="color: white;">{{d.2}}</td>
+                        </tr>
+                        <tr>
+                            <td>EMAIL</td><td colspan="2"  style="color: white;">{{d.3}}</td>
+                        </tr>
+                        <tr>
+                            <td>GENDER</td><td colspan="2"  style="color: white;">{{d.4}}</td>
+                        </tr>                         
+                        <tr>
+                            <!-- <td><a class="btn btn-warning m-2" href="/a_user_edit?id={{d.0}}">edit</a></div></td> -->
+                            <td><a class="btn btn-primary m-2" href="/user_delete?id={{d.0}}">delete</a></div></td>
+                            {% if d.6 != "s" %}
+                            <td>                               
+                                <a class="btn btn-primary m-2" href="/a_request_user_suspend?id={{ d.0 }}">suspend</a>                              
+                            </td>
+                            {% else %}
+                            <td>                              
+                                <a class="btn btn-success m-2" href="/a_request_user_reinstate?id={{d.0}}">reinstate</a>                           
+                            </td>
+                            {% endif %}
+                        </tr>
+                    </table>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col-sm-12 col-xl-6">
+            <div class="bg-secondary text-center rounded p-4">
+                <div class="d-flex align-items-center justify-content-between mb-4">
+                    <h6 class="mb-0">website Usage</h6>             
+                </div>
+                {% block Right_Plot %}
+                    {% autoescape off %}
+                        {{ graphic }}
+                    {% endautoescape %}
+                {% endblock Right_Plot %}             
+            </div>
+        </div>
+    </div>
+</div>               
+<div class="container-fluid pt-4 px-4">
+    <div class="row g-4">
+        <div class="col-sm-15 col-xl-18">
+            <div class="bg-secondary text-center rounded p-4">
+                <div class="d-flex align-items-center justify-content-between mb-4">
+                    <h6 class="mb-0">Payment History</h6>                    
+                </div>
+                <table class="table table-bordered">
+                    <tr>
+                        <th>Amount</th>
+                        <th>Status</th>
+                        <th>Transaction ID</th>
+                        <th>Payment date</th>
+                        <th>Expiration date</th>
+                    </tr>                     
+                    {% for d1 in data2 %}
+                    <tr>                         
+                        <td>{{d1.2}}</td>
+                        <td>{{d1.3}}</td>
+                        <td>{{d1.4}}</td>
+                        <td>{{d1.5}}</td>
+                        <td>{{d1.6}}</td>                    
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>         
+    </div>
+</div> 
+{% endif %}
+{% endblock %}

@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide">
+
+<title>SPPS</title>
+<link href="{% static 'css/home.css' %}" rel="stylesheet">
+</head>
+<body>
+<video id="background-video" autoplay loop muted>
+    <source src="{% static 'image/b.mp4' %}" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+
+<div id="content">
+
+    <center>
+    <h1 class="font-effect-fire">STOCK PRICE PREDICTION SYSTEM</h1>
+    </center>
+    <table align="center">
+        
+        <tr>
+            <td>
+                <img src="{% static 'image/front.svg' %}" alt="Example GIF">
+            </td>        
+            <td>
+        
+                <a href="login">
+                    <button class="btn" type="button">
+                        <strong>LOGIN</strong>
+                        <div id="container-stars">
+                          <div id="stars"></div>
+                        </div>
+                      
+                        <div id="glow">
+                          <div class="circle"></div>
+                          <div class="circle"></div>
+                        </div>
+                      </button>
+                </a>
+
+                <a href="register">
+                    <button class="btn" type="button">
+                        <strong>REGISTER</strong>
+                        <div id="container-stars">
+                          <div id="stars"></div>
+                        </div>
+                      
+                        <div id="glow">
+                          <div class="circle"></div>
+                          <div class="circle"></div>
+                        </div>
+                      </button>
+                </a>
+            </td>
+ 
+             
+        </tr>
+    </table>
+<h2>⚠️ This software is for educational purposes only</h2>
+<p>© 2024 MAHESH H</p>
+ 
+</div>
+</body>
+</html>

@@ -1,0 +1,24 @@
+{% extends 'user_navbar.html' %}
+{% block content %}
+ 
+
+
+            <table class="">
+                 
+                {% for d in data %}
+                <tr>
+                    
+                      <td>NAME</td> <td>{{d.0}}</td></tr>
+                   <tr><td>PHONE</td> <td>{{d.1}}</td></tr>
+                    <tr><td>EMAIL</td><td>{{d.2}}</td></tr>
+                   <tr><td>GENDER</td><td>{{d.3}}</td></tr>
+                       
+                        <!-- <td><a href="/user_edit?id={{d.0}}">edit</a></td>
+                        <td><a href="/user_delete?id={{d.0}}">delete</a></td> -->
+                
+                
+                {% endfor %}
+            </table>
+ 
+             
+{% endblock %}

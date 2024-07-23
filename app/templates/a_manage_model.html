@@ -1,0 +1,131 @@
+{% extends 'admin_navbar.html' %}
+{% load static %}
+{% block content %}
+
+{% if msg %}
+<div id="message">
+    <div class="alert alert-warning alert-dismissible fade show" role="alert" >
+        <strong>Holy guacamole!</strong> {{msg}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+    </div> 
+</div>
+{% endif %}
+
+<div class="path pt-4 px-4">
+    <h6><a href="/admin_page/">Dashbord</a>&nbsp>&nbsp Model </h6>
+</div>
+
+<div class="container-fluid pt-4 px-4" style="position: fixed; width: 82.6%;   ">
+    <div class="bg-secondary text-center rounded p-2">
+        <button class="divbtn" id="showDiv1">Check Accuracy</button>
+        <button class="divbtn" id="showDiv2">Upload Model</button>                  
+     </div>
+</div>  
+<div id="div1">
+<div class="container-fluid px-4" style="padding-top: 90px;">
+    <div class="row g-4">
+        <div class="col-sm-12 col-xl-14">
+            <div class="bg-secondary text-center rounded p-4">
+                 <form action="" method="POST">
+                    {% csrf_token %}
+                    <div class="form-floating mb-3">
+                        <input class="form-control" id="floatingInput" type="text" name="nc">
+                        <label for="floatingInput">Ticker Name</label>
+                    </div>
+                    <input class="btn btn-primary rounded-pill" type="submit" name="submit_form1" value="CHECK">
+                 </form>
+                
+            </div>
+        </div>
+         
+    </div>
+</div>
+{% if plot_div_pred1 %}
+<div class="container-fluid pt-4 px-4">
+    <div class="row g-4">
+        <div class="col-sm-12 col-xl-14">
+            <div class="bg-secondary text-center rounded p-4">
+                <div class="d-flex align-items-center justify-content-between mb-4">
+                    <h6 class="mb-0">Model Accuracy of {{ticker}}</h6>
+                        <h6>Mean Absolute error: {{mae}}</h6>
+                        <h6>Mean Squre error: {{mse}}</h6>                    
+                </div>
+                {% block Left_Plot_1 %}
+                    {% autoescape off %}
+                        {{ plot_div_pred1 }}
+                    {% endautoescape %}
+                {% endblock Left_Plot_1 %}
+            </div>
+        </div>
+         
+    </div>
+</div>
+ 
+{% else %}
+{% endif %}
+</div>
+<div id="div2">
+    <div class="container-fluid px-4" style="padding-top: 90px;">
+        <div class="row g-4">
+            <div class="col-sm-12 col-xl-14">
+                <div class="bg-secondary text-center rounded p-4">
+                     <form action="" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <input class="form-control form-control-lg bg-dark mb-3" type="file" accept=".h5" name="file">
+                        <input class="btn btn-primary rounded-pill m-2" type="submit" name="submit_form2" value="Upload">
+                     </form>
+                    
+                </div>
+            </div>
+             
+        </div>
+    </div>
+</div>
+<script>
+    const showDiv1Btn = document.getElementById('showDiv1');
+    const showDiv2Btn = document.getElementById('showDiv2');
+  
+
+    const div1 = document.getElementById('div1');
+    const div2 = document.getElementById('div2');
+ 
+
+    div1.classList.remove('hidden');
+    div2.classList.add('hidden');
+ 
+    
+    
+    
+    showDiv1Btn.addEventListener('click', function() {
+        div1.classList.remove('hidden');
+        div2.classList.add('hidden');
+     
+            
+    });
+
+    showDiv2Btn.addEventListener('click', function() {
+        div1.classList.add('hidden');
+        div2.classList.remove('hidden');
+        
+        
+    });
+    document.addEventListener('DOMContentLoaded', (event) => {
+            // Set a timeout to start fading the alert after 5 seconds
+            setTimeout(() => {
+                var messageDiv = document.getElementById('message');
+                if (messageDiv) {
+                    messageDiv.classList.add('fade-out');
+                    // Optionally, remove the element from the DOM after the fade-out effect
+                    setTimeout(() => {
+                        messageDiv.style.display = 'none';
+                    }, 5000); // Match this to the CSS transition duration
+                }
+            }, 2000); // 5000 milliseconds = 5 seconds
+        });
+</script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> 
+{% endblock %}

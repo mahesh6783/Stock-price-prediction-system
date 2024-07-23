@@ -1,0 +1,57 @@
+{% extends 'user_navbar.html' %}
+{% load static %}
+{% block content %}
+<div class="container-fluid pt-4" style="padding-left: 100px; padding-right: 100px;">
+    <div class="bg-secondary rounded p-4">
+        <div class="replys">
+            {% for d in data2 %}
+
+            <div class="inline-block"><img class="rounded-circle flex-shrink-0" src="{% static 'u_image/' %}{{ d.1 }}" alt="" style="width: 40px; height: 40px;"></div>
+            <div class="inline-block"><h6 style="margin-left: 0;">{{d.2}}</h6></div>
+            <div class=" "><h6 style="margin-left: 50px;">{{d.0}}</h6></div>
+            {% endfor %} 
+        </div>
+        <div class="col-md-11">
+            <div class="scrollable-div">
+                {% for d in data1 %}                                     
+                <div class="d-flex align-items-center border-bottom py-3" style="padding: 20px;">
+                    <img class="rounded-circle flex-shrink-0" src="{% static 'u_image/' %}{{ d.7 }}" alt="" style="width: 40px; height: 40px;">
+                    <div class="w-100 ms-3">
+                        <div class="d-flex w-100 justify-content-between">
+                            {% if d.8 %}
+                                <h6 class="mb-0">{{d.2}}&nbsp;<img class="rounded-circle flex-shrink-0" src="{% static 'u_image/' %}{{ d.8 }}" alt="" style="width: 16px; height: 16px;"></h6>
+                            {% else %}
+                                <h6 class="mb-0">{{d.2}}</h6>
+                            {% endif %}
+                            <small>{{d.4}} : {{d.5}} </small>
+                        </div>
+                        <span>{{d.3}}</span>                                      
+                        
+                    </div>                                        
+                </div>
+                {% endfor %}
+            </div>  
+        </div>
+                
+
+
+
+        <form action="../collect_reply/" method="POST" class="fd_form">
+            {% csrf_token %}                                  
+            <input type="hidden" name="fd_id" value="{{id_value}}">
+            <table >
+                <tr>
+                    <td style="width:90%;"> <input type="text" class="form-control form-control-lg mb-3" name="fd"></td>
+                    <td><input class="btn btn-lg btn-primary mb-3"  style="margin-left: 6px;" type="submit" value="SEND"></td>
+                </tr>
+            </table>            
+        </form>                       
+    </div>
+</div>
+          
+
+                       
+                  
+ 
+
+{% endblock %}

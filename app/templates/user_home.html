@@ -1,0 +1,106 @@
+{% extends 'user_navbar.html' %}
+
+{% load static %}
+{% block content %}
+
+
+    <div class="slideshow-container">
+
+        <div class="mySlides fade">
+        <div class="numbertext">1 / 3</div>
+        <img class="simg" src="{% static 'image/banner1.jpg' %}" style="width:100%">
+        <div class="text">Caption Text</div>
+        </div>
+
+        <div class="mySlides fade">
+        <div class="numbertext">2 / 3</div>
+        <img class="simg" src="{% static 'image/banner2.jpg' %}" style="width:100%">
+        <div class="text">Caption Two</div>
+        </div>
+
+        <div class="mySlides fade">
+        <div class="numbertext">3 / 3</div>
+        <img class="simg" src="{% static 'image/banner3.jpg' %}" style="width:100%">
+        <div class="text">Caption Three</div>
+        </div>
+
+    </div>
+    <br>
+
+    <div style="text-align:center">
+        <span class="dot"></span> 
+        <span class="dot"></span> 
+        <span class="dot"></span> 
+    </div>
+
+    <div style="width: 70%; height: 6px; margin-left: auto; margin-right: 0px; margin-top: 3%; background-color: white; border-radius: 90px;">
+
+    </div>
+
+    <div class="h_container">
+        <!-- Left div -->
+        <div class="h_left-div">
+            <h2>Welcome to</h2>
+          
+            <h1>Stock Price Prediction System</h1>
+            <br>
+            <p>At Stock Price Prediction System, we leverage cutting-edge techniques in data science and machine learning to forecast stock prices with precision. Our system combines the power of linear regression and Long Short-Term Memory (LSTM) neural networks to provide insightful predictions for investors and traders.</p>
+        </div>
+    
+        <!-- Right div -->
+        <div class="h_right-div">
+            <img class="user_h_img" src="{% static 'image/front.svg' %}" alt="Example GIF">
+        </div>
+    </div>
+    <div style="width: 70%; height: 6px; margin-top: 3%; background-color: white; border-radius: 90px;">
+
+    </div>
+    <div class="h_container">
+        <!-- Left div -->
+        <div class="h_left-div">
+            <img class="user_h_img" src="{% static 'image/h_svg.gif' %}" alt="Example GIF">       
+        </div>
+    
+        <!-- Right div -->
+        <div class="h_right-div">
+            <h2>Why Choose StockPrice Predictor?</h2>
+            <ol>
+                <li><b style="color: rgb(93, 117, 202);">Accurate Predictions:</b> Our advanced algorithms analyze historical data and market trends to generate accurate forecasts, helping you make informed investment decisions.</li>
+                <li><b style="color: rgb(93, 117, 202);">Multiple Models:</b>  By employing both linear regression and LSTM models, we offer a comprehensive approach to stock price prediction, capturing both short-term fluctuations and long-term trends.</li>
+                <li><b style="color: rgb(93, 117, 202);">User-Friendly Interface: </b>Our platform is designed with simplicity in mind. Whether you're a seasoned investor or new to trading, you'll find our interface intuitive and easy to navigate.</li>
+                <li><b style="color: rgb(93, 117, 202);">Continuous Improvement: </b>We are committed to staying at the forefront of technological advancements in data science. Our team regularly updates and enhances our models to ensure optimal performance..</li>
+ 
+            </ol>
+            
+
+        </div>
+    </div>
+
+
+
+
+
+
+    <script>
+        let slideIndex = 0;
+        showSlides();
+
+        function showSlides() {
+        let i;
+        let slides = document.getElementsByClassName("mySlides");
+        let dots = document.getElementsByClassName("dot");
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";  
+        }
+        slideIndex++;
+        if (slideIndex > slides.length) {slideIndex = 1}    
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex-1].style.display = "block";  
+        dots[slideIndex-1].className += " active";
+        setTimeout(showSlides, 2500); // Change image every 2 seconds
+        }
+    </script>
+    
+{% endblock %}

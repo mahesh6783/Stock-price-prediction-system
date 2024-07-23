@@ -1,0 +1,89 @@
+{% extends 'user_navbar.html' %}
+{% load static %}
+{% block content %}
+ 
+            <div class="container-fluid pt-4 px-4">
+                <div class="row g-4">
+                    
+                    <div class="col-sm-11 col-xl-8">
+                        <div class="bg-secondary   rounded p-4">
+                            <div class="d-flex align-items-center justify-content-between mb-4">
+                                <h6 class="mb-0">Posts</h6>
+                            </div>
+                            <div class="col-md-10">
+                                <div class="scrollable-div">
+                                    {% for d in data1 %}                                     
+                                    <div class="d-flex align-items-center border-bottom py-3" style="padding: 20px;">
+                                        <img class="rounded-circle flex-shrink-0" src="{% static 'u_image/' %}{{ d.7 }}" alt="" style="width: 40px; height: 40px;">
+                                        <div class="w-100 ms-3">
+                                            <div class="d-flex w-100 justify-content-between">
+                                                <h6 class="mb-0">{{d.1}}</h6>
+                                                <small>{{d.3}} : {{d.4}} </small>
+                                            </div>
+                                            <span>{{d.2}}</span>                                      
+                                            <div>
+                                                <a href="/user_fb_reply?id={{d.0}}"><span style="color: yellow;">{{d.8}}</span>&nbsp;replys</a>
+                                            </div>
+                                        </div>                                        
+                                    </div>
+                                    {% endfor %}
+                              </div>  
+                            </div>
+                        </div>
+                    </div>
+                  
+                    <div class="col-sm-11 col-xl-4">
+                        <div class="bg-secondary   rounded p-4">
+                            <div class="d-flex align-items-center justify-content-between mb-4">
+                                <h6 class="mb-0">My Posts</h6>
+                            </div>
+                            <div class="col-md-10">
+                                <div class="scrollable-div">
+                                    {% for d in data2 %}                                     
+                                    <div class="d-flex align-items-center border-bottom py-3" style="padding: 20px;">
+                                         <div class="w-100 ms-3">
+                                            <div class="d-flex w-100 justify-content-between">
+                                                <h6 class="mb-0">{{d.3}} : {{d.4}}</h6>
+                                               
+                                            </div>
+                                            <span>{{d.2}}</span>                                      
+                                            <div>
+                                                <a href="/user_fb_reply?id={{d.0}}">reply</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/feed_back_delete?id={{d.0}}">delete</a>
+                                            </div>
+                                        </div>                                        
+                                    </div>
+                                    {% endfor %}
+                              </div>  
+                            </div>
+                        </div>
+                    </div>
+                  
+                </div>
+            </div>
+<div class="container-fluid pt-1 px-4">
+        <div class="row g-4">
+
+            <div class="col-sm-4 col-xl-12">
+                <div class="bg-secondary text-center rounded p-4">
+                    
+                    <div class="col-md-2">
+                        <form action="../fd_collect/" method="POST" class="fd_form">
+                            {% csrf_token %}
+                            <table >
+                                <tr>
+                                    <td> <input type="text" class="form-control form-control-lg mb-3" style="width: 900px;" name="fd"></td>
+                                    <td><input class="btn btn-lg btn-primary mb-3"  style="margin-left: 6px;" type="submit" value="SEND"></td>
+                                </tr>
+                            </table>  
+                        </form>
+                                                      
+                          
+                                      
+                   
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+
+{% endblock %}
